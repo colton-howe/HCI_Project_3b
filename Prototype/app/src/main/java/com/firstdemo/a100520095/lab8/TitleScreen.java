@@ -19,16 +19,15 @@ public class TitleScreen extends AppCompatActivity {
     protected void loginButton(View view) {
         EditText username = (EditText)findViewById(R.id.txtUsername);
         EditText password = (EditText)findViewById(R.id.txtPassword);
-        if(username.getText().toString().equals("Admin") && password.getText().toString().equals("password")){
-            Toast toast = Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT);
-            toast.show();
+        if (username.getText().toString().equals("Admin") && password.getText().toString().equals("password")){
+            Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ShowLocation.class);
             startActivity(intent);
         } else {
             TextView error = (TextView)findViewById(R.id.lblError);
             error.setText("Incorrect username/password combination");
-            username.setText("");
-            password.setText("");
+            username.setText("Admin");
+            password.setText("password");
         }
     }
 }

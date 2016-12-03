@@ -21,6 +21,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -63,42 +65,41 @@ public class ShowLocation extends FragmentActivity implements OnMapReadyCallback
         LatLng ERC = new LatLng(43.945595, -78.896298);
         LatLng LIB = new LatLng(43.945850, -78.897202);
         googleMap.setOnMarkerClickListener(this);
+
         markers.add(googleMap.addMarker(new MarkerOptions().position(UA)
                                                            .title("Science Building (UA)")
-                                                           .snippet("UA")));
+                                                           .snippet("UA")
+        .icon(BitmapDescriptorFactory.fromResource(R.drawable.note_small))));
         markers.add(googleMap.addMarker(new MarkerOptions().position(UB)
                                                            .title("Business/IT Building (UB)")
-                                                           .snippet("UB")));
+                                                           .snippet("UB")
+        .icon(BitmapDescriptorFactory.fromResource(R.drawable.note_small))));
         markers.add(googleMap.addMarker(new MarkerOptions().position(ERC)
                                                            .title("Energy Systems and Nuclear Science Research Center (ERC)")
-                                                           .snippet("ERC")));
+                                                           .snippet("ERC")
+                                                           .icon(BitmapDescriptorFactory.fromResource(R.drawable.note_small))));
         markers.add(googleMap.addMarker(new MarkerOptions().position(LIB)
                                                            .title("Campus Library (LIB)")
-                                                           .snippet("LIB")));
+                                                           .snippet("LIB")
+                                                           .icon(BitmapDescriptorFactory.fromResource(R.drawable.note_small))));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(school, 16));
     }
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-        if (markers.contains(marker))
-        {
-            if(marker.getSnippet().equals("UA")){
-                Intent intent = new Intent(this, LocationInfo.class);
+        if (markers.contains(marker)) {
+            Intent intent = new Intent(this, LocationInfo.class);
+
+            if(marker.getSnippet().equals("UA"))
                 intent.putExtra("location", locations.get(0));
-                startActivity(intent);
-            } else if (marker.getSnippet().equals("UB")){
-                Intent intent = new Intent(this, LocationInfo.class);
+            else if (marker.getSnippet().equals("UB"))
                 intent.putExtra("location", locations.get(1));
-                startActivity(intent);
-            } else if (marker.getSnippet().equals("ERC")){
-                Intent intent = new Intent(this, LocationInfo.class);
+            else if (marker.getSnippet().equals("ERC"))
                 intent.putExtra("location", locations.get(2));
-                startActivity(intent);
-            } else if (marker.getSnippet().equals("LIB")){
-                Intent intent = new Intent(this, LocationInfo.class);
+            else if (marker.getSnippet().equals("LIB"))
                 intent.putExtra("location", locations.get(3));
-                startActivity(intent);
-            }
+
+            startActivity(intent);
             return true;
         } else {
             return false;

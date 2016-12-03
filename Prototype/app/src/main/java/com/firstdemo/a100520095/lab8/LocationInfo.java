@@ -3,6 +3,8 @@ package com.firstdemo.a100520095.lab8;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
